@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.lixin.library.mapper.RecordMapper">
+    <insert id="addRecord" parameterType="Record">
+        insert into record(bookName,author,publish,startDate,endDate,state,bookId) values(#{bookName},#{author},#{publish},#{startDate},#{endDate},#{state},#{bookId})
+    </insert>
+
+    <select id="findAllRecord" resultType="Record">
+        select * from record
+    </select>
+
+    <select id="findByState" resultType="Record" parameterType="int">
+        select * from record where state=#{v}
+    </select>
+
+    <select id="findById" resultType="Record" parameterType="int">
+        select * from record where id=#{v}
+    </select>
+
+    <select id="returnRecord" resultType="Record" parameterType="int">
+        select * from record where state=#{state} and endDate is null
+    </select>
+
+    <update id="updateRecord" parameterType="Record">
+        update record set bookName=#{bookName},bookId=#{bookId},author=#{author},publish=#{publish},startDate=#{startDate},endDate=#{endDate},state=#{state} where id=#{id}
+    </update>
+</mapper>
